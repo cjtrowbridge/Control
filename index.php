@@ -53,17 +53,26 @@ function LoginPage(){
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
-  <body class="text-center">
-    <form class="form-login" action="./" method="post">
-      <h1 class="h3 mb-3 font-weight-normal">Please Log In</h1>
-      
-      <label for="key" class="sr-only">Key:</label>
-      <input type="key" id="key" class="form-control" placeholder="Key" required autofocus>
-      <submit class="btn btn-lg btn-primary btn-block" type="submit">
-     
-      
-    </form>
-  </body>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              
+              <form class="form-login" action="./" method="post">
+                <h1>Please Log In</h1>
+                <label for="key" class="sr-only">Key:</label>
+                <input type="key" id="key" class="form-control" placeholder="Key" required autofocus>
+                <submit class="btn btn-lg btn-primary btn-block" type="submit">
+              </form>
+
+            </div><!--/card-body-->
+          </div><!--/card-->
+        </div><!--/col-12
+      </div><!--/row-->
+    </div><!--/container-->
+   </body>
 </html>
 
 
