@@ -111,7 +111,7 @@ if(
       die('ok');
     }else{
       file_put_contents('failed_logins.txt',$_SERVER['REMOTE_ADDR'].PHP_EOL,FILE_APPEND);
-      die('nope');
+      die('nope ('.$FailedLogins')');
     }
   }else{
     LoginPage();
