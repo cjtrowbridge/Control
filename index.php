@@ -71,13 +71,12 @@ function LoginPage(){
 }
 
 
+$Config = Config('Config.php');
 
-if(file_exists('Config.php')){
-  require('Config.php');
-}else{
+if($Config===false){
   $Key = md5(uniqid(true));
   SaveConfig('Config.php','Key',$Key);
-  Config('Config.php');
+  $Config = Config('Config.php');
 }
 
 if(
@@ -88,4 +87,19 @@ if(
 }
 
 session_start();
+if(
+  (!(isset($_SESSION['expires'])))||
+  ($_SESSION['expires'] < time())
+){
+  if(isset($_POST['key'])){
+    if($_POST['key'])==$Config['Key']){
+      die('ok');
+    }else{
+      die('no');
+    }
+  }else{
+    LoginPage();
+    exit;
+  }
+}
 
