@@ -79,7 +79,7 @@ function LoginPage(){
 }
 
 
-$FailedLogins = substr_count(file_get_contents(), $_SERVER['REMOTE_ADDR']);
+$FailedLogins = substr_count(file_get_contents('failed_logins.txt'), $_SERVER['REMOTE_ADDR']);
 if($FailedLogins > 3){
   file_put_contents('failed_logins.txt',$_SERVER['REMOTE_ADDR'].PHP_EOL,FILE_APPEND);
   die('nope.');
