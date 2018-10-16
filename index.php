@@ -1,5 +1,51 @@
 <?php
 
+$Start=microtime(true);
+
+$FailedLogins = substr_count(file_get_contents('failed_logins.txt'), $_SERVER['REMOTE_ADDR']);
+if($FailedLogins > 3){
+  file_put_contents('failed_logins.txt',$_SERVER['REMOTE_ADDR'].PHP_EOL,FILE_APPEND);
+  die('nope.<!--'.(microtime(true)-$Start).'-->');
+}
+
+$Key = Config('Config.php','Key');
+
+if($Key===false){
+  $Key = md5(uniqid(true));
+  SaveConfig('Config.php','Key',$Key);
+  $Key = Config('Config.php','Key');
+}
+
+if(
+  (!(isset($Key))) ||
+  ($Key==false)
+){
+  die('Please complete missing configuration.');
+}
+
+session_start();
+
+if(
+  (!(isset($_SESSION['expires'])))||
+  ($_SESSION['expires'] < time())
+){
+  if(isset($_POST['key'])){
+    if($_POST['key']==$Key){
+      HUD();
+    }else{
+      file_put_contents('failed_logins.txt',$_SERVER['REMOTE_ADDR'].PHP_EOL,FILE_APPEND);
+      die('nope.');
+    }
+  }else{
+    LoginPage();
+    exit;
+  }
+}
+
+
+
+
+
 function Config($File, $Key, $Default = false){
   //Assume these config files contain valid associative arrays. Return the specified element in the first dimension of the array.
   
@@ -78,44 +124,4 @@ function LoginPage(){
 <?php
 }
 
-
-$FailedLogins = substr_count(file_get_contents('failed_logins.txt'), $_SERVER['REMOTE_ADDR']);
-if($FailedLogins > 3){
-  file_put_contents('failed_logins.txt',$_SERVER['REMOTE_ADDR'].PHP_EOL,FILE_APPEND);
-  die('nope.');
-}
-
-$Key = Config('Config.php','Key');
-
-if($Key===false){
-  $Key = md5(uniqid(true));
-  SaveConfig('Config.php','Key',$Key);
-  $Key = Config('Config.php','Key');
-}
-
-if(
-  (!(isset($Key))) ||
-  ($Key==false)
-){
-  die('Please complete missing configuration.');
-}
-
-session_start();
-
-if(
-  (!(isset($_SESSION['expires'])))||
-  ($_SESSION['expires'] < time())
-){
-  if(isset($_POST['key'])){
-    if($_POST['key']==$Key){
-      die('ok');
-    }else{
-      file_put_contents('failed_logins.txt',$_SERVER['REMOTE_ADDR'].PHP_EOL,FILE_APPEND);
-      die('nope.');
-    }
-  }else{
-    LoginPage();
-    exit;
-  }
-}
 
