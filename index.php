@@ -100,7 +100,7 @@ if(!(isset($_SESSION['failed_Logins']))){
   $_SESSION['failed_Logins']=0;
 }else{
   if($_SESSION['failed_Logins']>3){
-    file_put_contents('banned.txt',$_SERVER['REMOTE_ADDR'],FILE_APPEND);
+    file_put_contents('banned.txt',$_SERVER['REMOTE_ADDR'].PHP_EOL,FILE_APPEND);
     die('nope.');
   }
 }
