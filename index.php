@@ -60,7 +60,7 @@ function LoginPage(){
           <div class="card">
             <div class="card-body">
               
-              <form class="form-login" action="./" method="post">
+              <form class="form" action="./" method="post">
                 <h1>Please Log In</h1>
                 <label for="key" class="sr-only">Key:</label>
                 <input type="key" id="key" class="form-control" placeholder="Key" required autofocus>
