@@ -62,7 +62,7 @@ function LoginPage(){
               
               <form class="form" action="./" method="post">
                 <h1>Please Log In</h1>
-                <input type="key" id="key" class="form-control my-2" placeholder="Key" required autofocus>
+                <input type="key" id="key" name="key" class="form-control my-2" placeholder="Key" required autofocus>
                 <input type="submit" class="form-control btn btn-success btn-block my-2">
               </form>
 
