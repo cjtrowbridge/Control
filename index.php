@@ -95,6 +95,15 @@ if(
 }
 
 session_start();
+
+if(!(isset($_SESSION['failed_Logins']))){
+  $_SESSION['failed_Logins']=0;
+}else{
+  if($_SESSION['failed_Logins']>3){
+    die('nope.')
+  }
+}
+
 if(
   (!(isset($_SESSION['expires'])))||
   ($_SESSION['expires'] < time())
@@ -103,7 +112,7 @@ if(
     if($_POST['key']==$Key){
       die('ok');
     }else{
-      die('no');
+      $_SESSION['failed_Logins']+=1;
     }
   }else{
     LoginPage();
