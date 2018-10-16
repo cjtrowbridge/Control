@@ -124,4 +124,6 @@ function LoginPage(){
 <?php
 }
 
-
+function HUD(){
+  
+}
