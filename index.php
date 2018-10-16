@@ -100,7 +100,7 @@ if(!(isset($_SESSION['failed_Logins']))){
   $_SESSION['failed_Logins']=0;
 }else{
   if($_SESSION['failed_Logins']>3){
-    file_put_contents('banned.txt',$_SERVER['REMOTE_ADDR'].PHP_EOL,FILE_APPEND);
+    file_put_contents('failed_logins.txt',$_SERVER['REMOTE_ADDR'].PHP_EOL,FILE_APPEND);
     die('nope.');
   }
 }
@@ -113,6 +113,7 @@ if(
     if($_POST['key']==$Key){
       die('ok');
     }else{
+      file_put_contents('failed_logins.txt',$_SERVER['REMOTE_ADDR'].PHP_EOL,FILE_APPEND);
       $_SESSION['failed_Logins']+=1;
       die('nope');
     }
