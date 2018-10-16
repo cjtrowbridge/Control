@@ -100,7 +100,7 @@ if(!(isset($_SESSION['failed_Logins']))){
   $_SESSION['failed_Logins']=0;
 }else{
   if($_SESSION['failed_Logins']>3){
-    die('nope.')
+    die('nope.');
   }
 }
 
