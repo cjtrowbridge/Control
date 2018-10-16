@@ -64,7 +64,7 @@ function LoginPage(){
                 <h1>Please Log In</h1>
                 <label for="key" class="sr-only">Key:</label>
                 <input type="key" id="key" class="form-control" placeholder="Key" required autofocus>
-                <submit class="btn btn-lg btn-primary btn-block" type="submit">
+                <input type="submit" class="btn btn-lg btn-primary btn-block">
               </form>
 
             </div><!--/card-body-->
