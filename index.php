@@ -62,9 +62,8 @@ function LoginPage(){
               
               <form class="form" action="./" method="post">
                 <h1>Please Log In</h1>
-                <label for="key" class="sr-only">Key:</label>
-                <input type="key" id="key" class="form-control" placeholder="Key" required autofocus>
-                <input type="submit" class="btn btn-lg btn-primary btn-block">
+                <input type="key" id="key" class="form-control my-2" placeholder="Key" required autofocus>
+                <input type="submit" class="form-control btn btn-success btn-block my-2">
               </form>
 
             </div><!--/card-body-->
