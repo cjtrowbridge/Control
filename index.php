@@ -92,7 +92,7 @@ if(
   ($_SESSION['expires'] < time())
 ){
   if(isset($_POST['key'])){
-    if($_POST['key'])==$Config['Key']){
+    if($_POST['key']==$Config['Key']){
       die('ok');
     }else{
       die('no');
