@@ -71,17 +71,17 @@ function LoginPage(){
 }
 
 
-$Config = Config('Config.php');
+$Key = Config('Config.php','Key');
 
-if($Config===false){
+if($Key===false){
   $Key = md5(uniqid(true));
   SaveConfig('Config.php','Key',$Key);
-  $Config = Config('Config.php');
+  $Key = Config('Config.php','Key');
 }
 
 if(
-  (!(isset($Config))) ||
-  (!(isset($Config['Key'])))
+  (!(isset($Key))) ||
+  ($Key==false)
 ){
   die('Please complete missing configuration.');
 }
@@ -92,7 +92,7 @@ if(
   ($_SESSION['expires'] < time())
 ){
   if(isset($_POST['key'])){
-    if($_POST['key']==$Config['Key']){
+    if($_POST['key']==$Key){
       die('ok');
     }else{
       die('no');
