@@ -125,5 +125,7 @@ function LoginPage(){
 }
 
 function HUD(){
-  
+  ?>
+    Welcome
+    <?php
 }
